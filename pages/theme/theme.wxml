@@ -1,0 +1,16 @@
+<!--pages/theme/theme.wxml-->
+<import src="../tpls/products/products-tpl.wxml" />
+
+<view class="container">
+  <!-- 专题页面头图 -->
+  <view class="theme-header">
+    <image mode="aspectFill" src="{{ themesArray.head_img.url }}"></image>
+  </view>
+
+  <!-- 专题页面商品列表 -->
+  <view class="products-box">
+    <block wx:for="{{ themesArray.product }}">
+      <template is="product" data="{{ ...item }}"></template>
+    </block>
+  </view>
+</view>

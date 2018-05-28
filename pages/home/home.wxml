@@ -1,0 +1,50 @@
+<!-- 引入模板 -->
+<import src="../tpls/products/products-tpl.wxml" />
+
+<view class="container">
+
+  <swiper indicator-dots="true" autoplay="true" class="swiper">
+    <block wx:for="{{ bannerArray }}">
+      <swiper-item class="banner-item"  data-id="{{ item.key_word }}" bindtap="onProductsItemTap">
+      <!-- 在小程序中如果不规定循环的 value 则 默认使用 item  -->
+      <!-- 对于不规则的图片 使用 mode="aspectFill" 填充所有区域按照图片比例      -->
+        <image class="item-image" mode="aspectFill" src="{{ item.img.url }}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="home-main">
+
+    <!-- 精选主题 -->
+    <view class="home-main-theme">
+      <view class="home-main-header">精选主题</view>
+        <view class='theme-box'>
+        <block wx:for="{{ themeArray }}">
+            <!-- 如果整除开 显示大图 -->
+            <view wx:if="{{ index % 3 == 2 }}" class="theme-item big" bindtap="onThemesItemTap" data-themeid="{{ item.id }}" data-themename="{{ item.description }}">
+              <image mode="aspectFill" class="theme-box-image" src=" {{ item.topic_img.url }} "></image>
+            </view>
+            <!-- 否则显示小图 -->
+            <view wx:else class="theme-item" bindtap="onThemesItemTap" data-themeid="{{ item.id }}"  data-themename="{{ item.description }}">
+              <image mode="aspectFill" class="theme-box-image" src=" {{ item.topic_img.url }} "></image>
+            </view>
+        </block>
+        </view>
+    </view>
+    
+    <!-- 最近新品 -->
+    <view class="home-main-product">
+      <view class="home-main-header">最近新品</view>
+        <view class="products-box">
+          <block wx:for="{{ productsArray }}">
+            <!-- 使用单个的商品模板 -->
+            <!-- ... 拓展运算符 相当剥离一层 传入的其实是 item的所有子元素-->
+            <template is="product" data="{{...item}}"></template>
+          </block>
+        </view>
+        <!-- 引用模板 并传值-->
+       <!-- 使用列表的产品模板 -->
+       <!--<template is="products" data="{{ productsArray }}"></template>-->
+    </view>
+  </view>
+</view>

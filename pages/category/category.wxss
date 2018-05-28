@@ -1,0 +1,8 @@
+/* pages/category/category.wxss */
+@import "../tpls/category/category-tpl.wxss";
+
+.category-box{
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}

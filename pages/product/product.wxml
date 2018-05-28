@@ -1,0 +1,86 @@
+<!--pages/product/product.wxml-->
+<view class="container detail-cintainer">
+  <!-- 上半部分 -->
+  <view class="detail-header-box">
+    <!-- 购物车 -->
+    <view class="fixed-btns-box">
+      <view class="fiexd-cart">
+        <image src="../../images/icon/cart@top.png"></image>
+      </view>
+    </view>
+
+    <!-- 商品头图 -->
+    <view class="detail-topic-img">
+      <image src="{{ product.main_img_url }}" mode="aspectFit"></image>
+    </view>
+
+    <!-- 购物车 -->
+    <view class="cart-box">
+
+        <!-- 选择数量 -->
+        <view class="product-counts">
+          <!-- range 类似一个范围，是个数组，value 类似一个数组的下标 -->
+          <!-- 数据绑定来确定组件应用的样式 -->
+          <picker range="{{ countsArray }}" bindchange="bindPickerChange" class="{{ product.stock == 0 ? 'disabled': '' }}">
+            <!-- 如果不加view 则显示会错乱 picker对 flex 布局支持不好 导致错乱-->
+            <view>
+              <text class="counts-tips">数量</text>
+              <!-- 默认值 进入页面则会显示1 -->
+              <text class="counts-data">{{ productCount?productCount:1 }}</text>
+              <image class="counts-icon" src="../../images/icon/arrow@down.png"></image>
+            </view>
+          </picker>
+        </view>
+
+        <!-- 分割线 -->
+        <view class="middle-border">
+        </view>
+
+        <!-- 加入购物车 -->
+        <view class="add-cart-btn {{ product.stock == 0 ? 'disabled':'' }}">
+          <view>
+            <text>加入购物车</text>
+            <image src="../../images/icon/cart.png" class="cart-icon"></image>
+          </view>
+        </view>
+    </view>
+
+    <!-- 商品介绍 -->
+    <view class="basic-info-box">
+       <!-- 无货时提示 -->
+      <view class="stock no" wx:if="{{ product.stock == 0 }}">此商品暂时无货</view>
+      <view class="stock" wx:else>有货</view>
+      <view class="name">{{ product.name }}</view>
+      <view class="price">￥{{ product.price }}</view>
+    </view>
+
+  </view>
+
+  <!-- 下半部分 -->
+  <view class="detail-bottom-box">
+
+    <!-- 选择栏 -->
+    <view class="tabs-box">
+      <block wx:for="{{ tabsData }}">
+        <view class="tabs-item {{ currentTabsIndex == index? 'selected': '' }}" bindtap="onTabsItemTap" data-index="{{ index }}">
+          {{ item }}
+        </view>
+      </block>
+    </view>
+
+    <!-- 详情栏 -->
+    <view class="product-detail-box">
+      <!-- hideen 如果为 true 就会隐藏 -->
+      <view hidden="{{ currentTabsIndex != 0 }}">
+        <block wx:for="{{ product.imgs }}">
+          <view class="product-detail-imgs">
+              <image src="{{ item.img_url.url }}" mode="aspectFit"></image>
+          </view>
+        </block>
+      </view>
+      <view hidden="{{ currentTabsIndex != 1 }}">222</view>
+      <view hidden="{{ currentTabsIndex != 2 }}">333</view>
+    </view>
+
+  </view>
+</view>

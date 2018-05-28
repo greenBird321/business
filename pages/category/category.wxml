@@ -1,0 +1,13 @@
+<!--pages/category/category.wxml-->
+<import src="../tpls/category/category-tpl.wxml" />
+<view class="container category-container">
+
+  <!-- 左侧侧边栏 -->
+  <view class="category-box">
+      <template is="sidebar" data="{{ categoryArray, currentMenuIndex }}"></template>
+  </view>
+
+  <!-- 右侧分类明细 -->
+  <view></view>
+
+</view>

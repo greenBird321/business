@@ -1,0 +1,26 @@
+<!-- 小程序模板 template 一个wxml 可以有不止一个模板-->
+<!-- 商品列表模板 -->
+<template name="products">
+    <view class="products-box">
+        <block wx:for="{{productsArray}}">
+            <view class="products-item" bindtap="onProductsItemTap" data-id="{{item.id}}" data-name="{{ item.name }}">
+                <image class="products-image" src="{{item.main_img_url}}" mode="aspectFill"></image>
+                <view class="products-item-bottom">
+                    <text class="name">{{item.name}}</text>
+                    <view class="price">￥{{item.price}}</view>
+                </view>
+            </view>
+        </block>
+    </view>
+</template>
+
+<!-- 单个商品模板 -->
+<template name="product">
+  <view class="products-item" bindtap="onProductsItemTap" data-id="{{ id }}" data-name="{{ name }}">
+    <image class="products-image" mode="aspectFill" src="{{ main_img_url }}"></image>
+    <view class="products-item-bottom">
+      <text class="name">{{ name }}</text>
+      <view class="price">￥{{ price }}</view>
+    </view>
+  </view>
+</template>

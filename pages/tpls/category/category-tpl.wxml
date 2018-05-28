@@ -1,0 +1,10 @@
+<template name="sidebar">
+  <view class="left-box">
+    <block wx:for="{{ categoryArray }}">
+      <!-- class 动态绑定 -->
+      <view class="menu-item  {{currentMenuIndex==index?'selected':''}}" data-id="{{ item.id }}" data-index="{{ index }}" bindtap="changeCategory">
+        {{ item.name }}
+      </view>
+    </block>
+  </view>
+</template> 
