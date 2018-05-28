@@ -50,7 +50,6 @@ Page({
    */
   _LoadData: function(){
     productModel.getProductData(this.data.id, (res) => {
-      console.log(res)
         this.setData({
           'product': res
         })

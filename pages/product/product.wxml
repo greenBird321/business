@@ -78,8 +78,19 @@
           </view>
         </block>
       </view>
-      <view hidden="{{ currentTabsIndex != 1 }}">222</view>
-      <view hidden="{{ currentTabsIndex != 2 }}">333</view>
+
+      <view hidden="{{ currentTabsIndex != 1 }}" class="product-detail-properties">
+        <block wx:for="{{ product.properties }}">
+          <view class="properties-item">
+            <view class="properties-name">{{ item.name }}</view>
+            <view class="properties-detail">{{ item.detail }}</view>
+          </view>
+        </block>
+      </view>
+
+      <view hidden="{{ currentTabsIndex != 2 }}">
+        <view>七天无理由退货</view>
+      </view>
     </view>
 
   </view>
