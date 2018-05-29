@@ -17,6 +17,19 @@ class Category extends Base {
     }
     this.request(params)
   }
+
+  /**
+   * 获取一个分类下的所有产品
+   */
+  getProductsByCategory(id, callBack){
+    var params = {
+      url: 'product/by_category?id=' + id,
+      successCallBack: function(data){
+        callBack&&callBack(data)
+      }
+    }
+    this.request(params)
+  }
 }
 
 export { Category }

@@ -50,5 +50,17 @@ Page({
         'themesArray': res
       })
     })
+  },
+
+  /**
+   * 点击商品触发
+   */
+  onProductsItemTap: function(event){
+    var id = themeModel.getDataSet(event, 'id')
+    var name = themeModel.getDataSet(event, 'name')
+
+    wx.navigateTo({
+      url: '../product/product?id=' + id + '&name=' + name,
+    })
   }
 })

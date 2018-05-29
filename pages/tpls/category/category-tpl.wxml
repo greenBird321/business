@@ -1,10 +1,36 @@
 <template name="sidebar">
-  <view class="left-box">
     <block wx:for="{{ categoryArray }}">
       <!-- class 动态绑定 -->
       <view class="menu-item  {{currentMenuIndex==index?'selected':''}}" data-id="{{ item.id }}" data-index="{{ index }}" bindtap="changeCategory">
         {{ item.name }}
       </view>
     </block>
-  </view>
 </template> 
+
+
+<template name="categorydetail">
+   <view class="category-detail-box">
+
+    <!-- 头图 -->
+    <view class="category-header">
+      <image src="{{ head_img }}" mode="aspectFill"></image>
+    </view>
+
+    <!-- 标题 -->
+    <view class="category-title">
+      <text>{{ title }}</text>
+    </view>
+
+    <!-- 详细商品 -->
+    <view class="category-main">
+      <block wx:for="{{ products }}">
+        <view class="category-goods-items {{index%3 == 1 ? 'middle': ''}}" data-id="{{ item.id }}" data-name="{{ item.name }}" bindtap="onProductsItemTap">
+          <!-- 商品图片 -->
+          <image src="{{ item.main_img_url }}" mode="aspectFill"></image>
+          <!-- 商品标题 -->
+          <view>{{ item.name }}</view>
+        </view>
+      </block>
+    </view>
+   </view>
+</template>

@@ -88,7 +88,7 @@
         </block>
       </view>
 
-      <view hidden="{{ currentTabsIndex != 2 }}">
+      <view hidden="{{ currentTabsIndex != 2 }}" class="product-detail-protect">
         <view>七天无理由退货</view>
       </view>
     </view>
