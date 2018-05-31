@@ -1,4 +1,39 @@
 <!--pages/cart/cart.wxml-->
-<view class="container cart-container">
+<import src = "../tpls/cart/cart-tpl.wxml" />
 
+<view class="container cart-container">
+  <!-- 如果购物车内有数据 显示数据 -->
+  <block wx:if="{{ cartData.length > 0 }}">
+    <!-- 购买商品详情 -->
+    <view class="cart-box">
+      <block wx:for="{{ cartData }}">
+        <template is="cart-box" data="{{ ...item }}"></template>
+      </block>
+    </view>
+
+    <!-- 购物车页脚 -->
+    <view class="footer-account-box all-accounts-box">
+      <!-- 全选按钮 -->
+      <view class="all-select" bindtap="toggleSelectAll" data-status="{{ selectTypeCounts==cartData.length? true : false }}">
+        <image wx:if="{{ selectTypeCounts == cartData.length }}" class="title-icon" src="../../images/icon/all@selected.png"></image>
+        <image wx:else class="title-icon" src="../../images/icon/all.png"></image>
+        <text>全选 ({{ selectedCounts }})</text>
+      </view>
+
+      <!-- 页脚右侧 -->
+      <view class="all-price-submit" bindtap="submitOrder">
+        <!-- 下单 -->
+        <view class="accounts-btn">下单</view>
+        <view class="price-text">￥{{ account }}</view>
+        <view class="arrow-icon">
+          <image wx:if="{{ account==0 }}" src="../../images/icon/arrow@grey.png"></image>
+          <image wx:else src="../../images/icon/arrow.png"></image>
+        </view>
+      </view>
+    </view>
+  </block>
+  <!-- 购物车内没有数据 显示文字 -->
+  <view wx:else>
+    您还没有添加任何商品到购物车
+  </view>
 </view>

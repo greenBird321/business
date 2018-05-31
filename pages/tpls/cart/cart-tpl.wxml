@@ -1,0 +1,41 @@
+<template name="cart-box">
+  <view class="cart-item">
+    <view class="cart-item-main">
+      <!-- 复选框 -->
+      <view class="cart-item-checkbox" bindtap="toggleSelect" data-id="{{ id }}" data-status="{{ selectStatus }}">
+        <image wx:if="{{ selectStatus }}" src="../../../images/icon/circle@selected.png"></image>
+        <image wx:else src="../../../images/icon/circle@noselected.png"></image>
+      </view>
+
+      <!-- 商品图片 -->
+      <view class="cart-item-img">
+          <image class="good-image" src="{{ main_img_url }}"></image>
+      </view>
+
+      <view class="cart-item-word">
+        <view class="title-box">
+           <!-- 商品标题 -->
+          <view >{{ name }}</view>
+          <!-- 商品价格 -->
+          <view>￥{{ price }}</view>
+        </view>
+
+        <view class="bottom-box">
+          <!-- 加减按钮 -->
+          <view class="cart-item-counts">
+            <view class="btns"  data-id="" bindtap="">-</view>
+            <view class="counts">{{ counts }}</view>
+            <view class="btns" data-id="" bindtap="">+</view>
+          </view>
+
+          <!-- 删除按钮  -->
+          <view>
+            <view class="delete" data-id="{{ id }}" bindtap="">x</view>
+          </view>
+        </view>
+
+      </view>
+
+    </view>
+  </view>
+</template>
