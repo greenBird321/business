@@ -1,7 +1,9 @@
 // pages/product/product.js
 import { Product } from 'product-model.js'
+import { Cart } from '../../pages/cart/cart-model.js'
 
 var productModel = new Product
+var cartModel = new Cart
 
 Page({
 
@@ -12,6 +14,7 @@ Page({
     id: 0,
     name: null,
     countsArray: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    productCount:1,
     tabsData: ['商品详情', '产品参数', '售后保障'],
     currentTabsIndex: 0
   },
@@ -51,6 +54,7 @@ Page({
   _LoadData: function(){
     productModel.getProductData(this.data.id, (res) => {
         this.setData({
+          'cartTotalCounts': cartModel.getCartTotalCounts(),
           'product': res
         })
     })
@@ -73,5 +77,29 @@ Page({
     this.setData({
       'currentTabsIndex': productModel.getDataSet(event, 'index')
     })
+  },
+
+  /**
+   * 添加购物车方法
+   */
+  onAddingToCartTap: function(event){
+    this.addToCart()
+    this.setData({
+      'cartTotalCounts': cartModel.getCartTotalCounts()
+    })
+  },
+  
+
+  addToCart:function(){
+      var tempObj = {}
+      var keys = ['id', 'name', 'main_img_url', 'price']
+      // for(var key in xxxxx) 这个key 相当于 for(i=0;i<array.length; i++)中的i
+      for (var key in this.data.product){
+        // indexOf 在数组中查找某个元素
+        if (keys.indexOf(key) >= 0){
+          tempObj[key] = this.data.product[key]
+        }
+      }
+      cartModel.add(tempObj, this.data.productCount)
   }
 })

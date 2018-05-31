@@ -33,13 +33,31 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 3,
 			"list": [
 				{
 					"id": 0,
-					"name": "product",
+					"name": "产品页面",
 					"pathName": "pages/product/product",
 					"query": "id=11&name=芹菜 半斤"
+				},
+				{
+					"id": 1,
+					"name": "分类页面",
+					"pathName": "pages/category/category",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "分类页面",
+					"pathName": "pages/theme/theme",
+					"query": "themeid=1&themename=每日生鲜"
+				},
+				{
+					"id": -1,
+					"name": "购物车页面",
+					"pathName": "pages/cart/cart",
+					"query": ""
 				}
 			]
 		}
