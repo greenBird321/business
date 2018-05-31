@@ -39,9 +39,9 @@ class Cart extends Base {
         if (flag){
           if (cartProducts.selectStatus){
             productCounts += cartProducts[i].counts 
-          }else{
-            productCounts += cartProducts[i].counts 
           }
+        } else {
+          productCounts += cartProducts[i].counts
         }
       }
       return productCounts
